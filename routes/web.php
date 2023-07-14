@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SurveyCoverageAreaController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +20,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', [App\Http\Controllers\PublicController::class, 'index'])->name('welcome');
+Route::get('/about-us', [App\Http\Controllers\PublicController::class, 'aboutus'])->name('aboutus');
+Route::get('/contact', [App\Http\Controllers\PublicController::class, 'contact'])->name('contact');
+Route::post('/contact', [App\Http\Controllers\PublicController::class, 'store'])->name('contactstore');
+
+Route::get('/services', [App\Http\Controllers\PublicController::class, 'services'])->name('services');
+Route::get('/services/{service:slug}', [App\Http\Controllers\PublicController::class, 'service'])->name('service');
+Route::get('/blogs', [App\Http\Controllers\PublicController::class, 'blogs'])->name('blogs');
+Route::get('/blogs/{post:slug}', [App\Http\Controllers\PublicController::class, 'post'])->name('post');
+
+Route::get('/survey-coverage-areas', [App\Http\Controllers\PublicController::class, 'areas'])->name('areas');
+Route::get('/book-a-surveyor', [App\Http\Controllers\PublicController::class, 'booking'])->name('booking');
+
+Route::post('/book-a-surveyor', [App\Http\Controllers\PublicController::class, 'bookingstore'])->name('bookingstore');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function (){
+        Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profile', [App\Http\Controllers\Admin\DashboardController::class, 'profile'])->name('profile');
+        Route::get('/settings', [App\Http\Controllers\Admin\DashboardController::class, 'settings'])->name('settings');
+
+        Route::get('/contacts', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('contacts');
+        Route::get('/contacts/edit/{contact}', [App\Http\Controllers\Admin\ContactController::class, 'edit'])->name('contacts.edit');
+        Route::put('/contacts/edit/{contact}', [App\Http\Controllers\Admin\ContactController::class, 'update']);
+        Route::delete('/contacts/edit/{contact}', [App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('contact.destroy');
+        Route::get('/bookings', [App\Http\Controllers\Admin\BookingController::class, 'index'])->name('booking');
+
+        Route::resource('teams', TeamController::class);
+        Route::resource('testimonials', TestimonialController::class);
+        Route::resource('services', ServiceController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('posts', PostController::class);
+        Route::resource('coverage-areas', SurveyCoverageAreaController::class);
+
+        Route::resource('users', UserController::class);
+
+    });
+});
