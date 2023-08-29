@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('is_published')->default(false);
+            // $table->boolean('is_published')->default(false);
             $table->string('views')->nullable();
             $table->timestamps();
             $table->softDeletes();

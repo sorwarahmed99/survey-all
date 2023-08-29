@@ -15,8 +15,9 @@
                   <th scope="col">Query Type</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
                   <th scope="col">Message</th>
-                  <th scope="col">Date time</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -27,11 +28,12 @@
                 @foreach ($contacts as $contact)    
                     <tr>
                         <th scope="row">{{ $count }}</th>
+                        <td>{{ $contact->query_type }}</td>
                         <td>{{ $contact->name }}</td>
                         <td>{{ $contact->email }}</td>
-                        <td>{{ $contact->query_type }}</td>
+                        <td>{{ $contact->phone }}</td>
                         <td>{{ $contact->message }}</td>
-                        <td>{{ $contact->created_at }}</td>
+                        <td>{{ $contact->created_at->format('d-m-Y') }}</td>
                         <td>
                             {{-- <a class="btn btn-sm btn-primary" href="{{ route('admin.contacts.edit', $contact->id) }}">{{ __('Edit') }}</a> --}}
                             <form style="display: inline-block"
@@ -52,6 +54,7 @@
                 
               </tbody>
             </table>
+            {!! $contacts->withQueryString()->links('pagination::bootstrap-5') !!}
           </div>
         </div>
       </div>

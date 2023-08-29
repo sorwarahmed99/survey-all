@@ -46,26 +46,32 @@
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="/" class="active">Home</a></li>
-                <li class="dropdown"><a href="/services"><span>Services</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <li><a href="/" class="{{ Route::currentRouteName() == 'welcome' ? 'active' : '' }}">Home</a></li>
+                <li class="dropdown"><a href="/services" class="{{ Route::currentRouteName() == 'services' || Route::currentRouteName() == 'service' ? 'active' : '' }}"><span>Services</span> <i class="fa-solid fa-caret-down fs-7"></i></a>
                     <ul>
-                        <li><a href="#">RICS Home Surveys Level 2</a></li>
-                        <li><a href="#">RICS Home Surveys Level 2 + valuation</a></li>
-                        <li><a href="#">RICS Home Surveys Level 3</a></li>
-                        <li><a href="#">Building Defect Surveys</a></li>
-                        <li><a href="#">Damp and Mould Surveys</a></li>
+                      @foreach ($services as $service)
+                        <li ><a href="{{ route('service', $service) }}">{{ $service->title }}</a></li>
+                      @endforeach
+                      @if($services->isEmpty())
+                        <li>
+                          <div class="col-lg-12 col-md-12">
+                              <img class="img-fluid rounded w-100" src="{{ asset('user-assets/assets/img/empty.svg') }}" style="width: 100%; height: 50px;" alt="">
+                              <p class="text-center fs-6">No services found.</p>
+                          </div>
+                        </li>
+                      @endif
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>RICS Surveyors</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <li class="dropdown"><a class="{{ Route::currentRouteName() == 'booking' || Route::currentRouteName() == 'areas' ? 'active' : '' }}" href="#"><span>RICS Surveyors</span> <i class="fa-solid fa-caret-down fs-7"></i></a>
                   <ul>
                       <li><a href="{{ route('booking') }}">Book a Surveyor</a></li>
                       <li><a href="{{ route('areas') }}">Survey Coverage Area</a></li>
                   </ul>
               </li>
                 {{-- <li><a href="/pricing">Pricing</a></li> --}}
-                <li><a href="/blogs">Blogs</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/about-us">About</a></li>
+                <li><a class="{{ Route::currentRouteName() == 'blogs' ? 'active' : '' }}" href="/blogs">Blogs</a></li>
+                <li><a class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}" href="/contact">Contact</a></li>
+                <li><a class="{{ Route::currentRouteName() == 'aboutus' ? 'active' : '' }}" href="/about-us">About</a></li>
                 <li><a class="get-a-quote" href="tel:07999474078"> <span class="call-icon"><i class="fa-solid fa-phone"></i></span> 0799 947 4078</a></li>
             </ul>
         </nav><!-- .navbar -->
@@ -80,48 +86,41 @@
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-3 col-md-12 footer-info">
-          <a href="/" class="logo d-flex align-items-center">
-            <span>Survey All</span>
-          </a>
-          <p>
-            SurveyAll Ltd is a reputable and highly regarded residential surveying firm operating in the South East and East
-            London postcode areas. 
-          </p>
+        
           <div>
-            <h4>Contact Us</h4>
+            <a href="/" class="logo d-flex align-items-center">
+              <span>SurveyAll</span>
+            </a>
+            <br>
             <p>
-              <strong>162 Swingate Lane, London<br>
-              SE18 2HN </strong><br>
               <strong>Phone:</strong> 0799 947 4078<br>
-              <strong>Email:</strong> info@surveyall.com<br>
+              <strong>Email:</strong> info@surveyall.co.uk<br>
             </p>
 
             <h4>Business Hours</h4>
-            <p>Mon - Sat <br> 08.00 - 17.00</p>
+            <p>Mon - Sat <br> 09.00 - 17.00</p>
           </div>
-          <div class="social-links d-flex mt-4">
+          {{-- <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
+          </div> --}}
         </div>
 
         <div class="col-lg-3 col-6 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">RICS Home Surveys Level 2</a></li>
-            <li><a href="#">RICS Home Surveys Level 2 + valuation</a></li>
-            <li><a href="#">RICS Home Surveys Level 3</a></li>
-            <li><a href="#">Building Defect Surveys</a></li>
-            <li><a href="#">Damp and Mould Surveys</a></li>
+            @foreach ($services as $service)
+              <li><a href="{{ route('service', $service) }}">{{ $service->title }}</a></li>
+            @endforeach
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-links">
           <h4>Customers</h4>
           <ul>
-            <li><a href="#">Book a Surveyor</a></li>
+            <li><a href="/book-a-surveyor">Book a Surveyor</a></li>
           </ul>
 
         </div>
@@ -137,24 +136,14 @@
             <li><a href="#">Privacy policy</a></li>
           </ul>
         </div>
-
-        
-
-        
-
       </div>
     </div>
 
     <div class="container mt-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>Survey All Limited</span></strong>. All Rights Reserved
+        <strong>SurveyAll<span style="font-size:1rem;"> &#174;</span></strong>
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ -->
-        {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
       </div>
     </div>
 
@@ -171,10 +160,10 @@
   <script src="{{ asset('user-assets/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
   <script src="{{ asset('user-assets/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
   <script src="{{ asset('user-assets/assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('user-assets/assets/vendor/php-email-form/validate.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('user-assets/assets/js/main.js') }}"></script>
+  @yield('scripts')
 
 </body>
 

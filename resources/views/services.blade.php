@@ -15,42 +15,40 @@
           </div>
         </div>
       </div>
-      <nav>
-        <div class="container">
-          <ol>
-            <li><a href="/">Home</a></li>
-            <li>Our Services</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Breadcrumbs -->
+      
+    </div>
 
-    <!-- ======= Services Section ======= -->
     <section id="service" class="services pt-0">
       <div class="container" data-aos="fade-up">
-
         <div class="section-header">
           <h2>Our Services</h2>
         </div>
+
         <div class="row gy-4">
           @foreach ($services as $service)
           <div class="col-md-4">
-              <div class="card h-100">
-                  <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" class="card-img-top">
+              <div class="card rounded p-4 shadow">
+                {{-- <div class="card-img-top img-responsive" data-lightbox="photos" style="background-image: url({{ asset('../../public/'.$service->image) }}); opacity: 0.8;"></div> --}}
+                  <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" class="card-img img-fluid rounded" >
                   <div class="card-body">
                       <h3 class="text-left"><a href="{{ route('service', $service)}}">{{ $service->title }}</a></h3>
                       <div class="card-text text-left">
-                          {!! Str::limit(strip_tags($service->description), 100) !!}
+                          {!! Str::limit(strip_tags($service->description), 200) !!}
                           <a href="{{ route('service', $service)}}">Read More</a>
                       </div>
                   </div>
               </div>
           </div>
           @endforeach
+          @if($services->isEmpty())
+          <div class="col-lg-12 col-md-12">
+              <img class="img-fluid rounded w-100" src="{{ asset('user-assets/assets/img/empty.svg') }}" style="width: 100%; height: 350px;" alt="">
+              <p class="text-center fs-3 fw-bold">No services found.</p>
+          </div>
+          @endif
         </div>
-
       </div>
-    </section><!-- End Services Section -->
+    </section>
   </main><!-- End #main -->
 
 @endsection

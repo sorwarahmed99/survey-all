@@ -9,44 +9,34 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-                <h2>{{ $service->title }}</h2>
+                <h2>{{ $service->title }} </h2>
             </div>
           </div>
         </div>
       </div>
-      <nav>
-        <div class="container">
-          <ol>
-            <li><a href="/">Home</a></li>
-            <li><a href="/services">Our Services</a></li>
-            <li>{{ $service->title }}</li>
-          </ol>
-        </div>
-      </nav>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Service Details Section ======= -->
     <section id="service-details" class="service-details">
       <div class="container" data-aos="fade-up">
-
         <div class="row gy-4">
-
             <div class="col-lg-4">
                 <div class="services-list">
                     <a href="#" class="active">{{$service->title}}</a>
                     <hr>
-                    @foreach ($services as $service)
-                        <a href="{{ route('services', $service->slug) }}">{{ $service->title }}</a>
+                    @foreach ($services as $otherService)
+                        <a href="{{ route('service', $otherService->slug) }}">{{ $otherService->title }}</a>
                     @endforeach
                 </div>
             </div>
 
           <div class="col-lg-8">
-              <img src="{{ asset($service->image) }}" alt="" class="services-img img-fluid img-responsive">
+              <img src="{{ asset($service->image) }}" alt=""  class="services-img w-100 object-fit-cover rounded">
               <h3>{{ $service->title }}</h3>
             <p>
               {!! $service->description !!}
             </p>
+            <a href="/book-a-surveyor" class="btn btn-primary float-end mt-2 px-5 py-3 fw-semibold" >Book A RICS Surveyor</a>
+            
             {{-- <ul>
               <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
               <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span></li>
@@ -61,6 +51,7 @@
           </div>
 
         </div>
+        
 
       </div>
     </section><!-- End Service Details Section -->

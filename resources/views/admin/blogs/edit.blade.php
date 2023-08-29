@@ -43,19 +43,19 @@
                 </div>
 
                 <div class="mb-3 ml-3">
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <h6>Publish or draft</h6>
-                    </div>
+                    </div> --}}
                     
                    
-                    <div class="form-check">
+                    {{-- <div class="form-check">
                         <input class="form-check-input" name="is_published" value="1" id="flexCheckDefault" type="checkbox" {{ $post->is_published == 1 ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckDefault">Publish</label>
-                    </div>
-                    <div class="form-check mb-3">
+                    </div> --}}
+                    {{-- <div class="form-check mb-3">
                         <input class="form-check-input" name="is_published" value="0" id="flexCheckChecked" type="checkbox" {{ $post->is_published == 0 ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckChecked">Draft</label>
-                    </div>
+                    </div> --}}
                 </div>
 
 

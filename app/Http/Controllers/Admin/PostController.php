@@ -8,7 +8,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use File;
-
+use Str;
 
 class PostController extends Controller
 {
@@ -19,7 +19,6 @@ class PostController extends Controller
     {
         $posts = Post::all();
         return view('admin.blogs.posts', compact('posts'));
-        
     }
 
     /**
@@ -28,18 +27,16 @@ class PostController extends Controller
     public function create()
     {
         return view('admin.blogs.create');
-        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(AddPostRequest $request)
     {
         $post = new Post;
 
     	$post->title = $request->title;
     	$post->description = $request->description;
+        $post->slug = Str::slug($request->title, "-");
+
     	 if ($request->hasFile('image')) {
        
             $image = $request->file('image');
@@ -51,31 +48,28 @@ class PostController extends Controller
             $post->image = 'uploads/' . $fileName;
         }
 
-    	$post->is_published = $request->is_published;
+    	// $post->is_published = $request->is_published;
         $post->save();
         return redirect()->back()->with('message',"Post created");
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Post $post)
     {
+        // if(!$post){
+        //     return abort(400);
+        // }
         return view('admin.blogs.show', compact('post'));
-        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Post $post)
     {
+        // dd($post);
         return view('admin.blogs.edit', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(UpdatePostRequest $request, Post $post)
     {
         $post->title = $request->title;
@@ -91,20 +85,18 @@ class PostController extends Controller
             $image->move('uploads/', $imageName);
             $post->image = 'uploads/' . $imageName;
         }
-    	$post->is_published = $request->is_published;
+    	// $post->is_published = $request->is_published;
         $post->save();
         return redirect()->back()->with('message',"Post updated");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(Post $post)
     {
-        $imagePath = public_path($post->image);
-        if(File::exists($imagePath)){
-            File::delete($imagePath);
-        }
+        // $imagePath = public_path($post->image);
+        // if(File::exists($imagePath)){
+        //     File::delete($imagePath);
+        // }
         $post->delete();
         return redirect()->back()->with('message',"Post deleted!");
     }

@@ -37,7 +37,11 @@
                             <img class="avatar-img" src="{{ asset($service->image) }}" alt="user-image">
                           </div>
                         </td>
-                        <td>{{ $service->title }}</td>
+                        <td>
+                          <a href="{{ route('service', $service)}}">
+                          
+                            {{ $service->title }}</td>
+                          </a>
                         <td>{!! Str::limit($service->description, 50,  '...') !!}</td>
                         <td>
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.services.edit', $service->id) }}">{{ __('Edit') }}</a>

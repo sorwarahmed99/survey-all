@@ -29,6 +29,7 @@
           <li class="nav-item"><a class="nav-link" href="{{ route('admin.teams.index')  }}"><span class="nav-icon"></span> Teams</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('admin.testimonials.index')  }}"><span class="nav-icon"></span> Testimonials</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('admin.services.index')  }}"><span class="nav-icon"></span> Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('admin.stats.index')  }}"><span class="nav-icon"></span> Stats.</a></li>
         </ul>
       </li>
       

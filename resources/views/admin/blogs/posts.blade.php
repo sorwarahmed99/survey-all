@@ -32,20 +32,25 @@
                 @endphp
                 @foreach ($posts as $post)
                     <tr>
-                        <th scope="row">{{ $count }}</th>
-                        <td class="text-center">
-                          <div class="avatar avatar-md">
-                            <img class="avatar-img" src="{{ asset($post->image) }}" alt="user-image">
-                          </div>
-                        </td>
-                        <td>{{ $post->title }}</td>
+                      <th scope="row">{{ $count }}</th>
+                      <td class="text-center">
+                        <div class="avatar avatar-md">
+                          <img class="avatar-img" src="{{ asset($post->image) }}" alt="user-image">
+                        </div>
+                      </td>
+                      
+                      <td>
+                        <a href="{{ route('post', $post->slug)}}">
+                          {{ $post->title }}
+                        </a>
+                      </td>
                         <td>{!! Str::limit($post->description, 50,  '...') !!}</td>
-                        <td>{{ $post->created_at->format('Y-m-d') }}</td>
+                        <td>{{ $post->created_at->format('d-m-Y') }}</td>
 
                         <td>
-                            <a class="btn btn-sm btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">{{ __('Edit') }}</a>
+                            <a class="btn btn-sm btn-primary" href="{{ route('admin.posts.edit', $post) }}">{{ __('Edit') }}</a>
                             <form style="display: inline-block"
-                                  action="{{ route('admin.posts.destroy', $post->id) }}"
+                                  action="{{ route('admin.posts.destroy', $post->slug) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')

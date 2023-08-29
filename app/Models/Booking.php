@@ -11,11 +11,24 @@ class Booking extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'service_name',
         'area_or_postcode',
         'name',
+        'slug',
         'email',
         'phone',
         'instruction',
+        
+        'job_type',
+        
+        'survey_type',
+        'other_service',
+
+        'valuation_reason',
+
+        'specific_reason_for_valuation_reason_help_to_buy',
+        'specific_reason_for_valuation_reason_shared_ownership',
+
+        'valuation_other_reason',
+        'valuation_for_lending_purpose',
     ];
 }

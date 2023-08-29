@@ -120,8 +120,9 @@
         </div>
       </div>
       <footer class="footer">
-        <div><a href="/">Survey All </a> © 2023</div>
-        <div class="ms-auto">Developed by &nbsp;<a href="https://zettabyte.com/">Zettabyte</a></div>
+        <div><a href="/"><strong>SurveyAll<span style="font-size:1rem;"> &#174;</span></strong>
+        </div>
+        {{-- <div class="ms-auto">Developed by &nbsp;<a href="https://zettabyte.com/">Zettabyte</a></div> --}}
       </footer>
     </div>
     <!-- CoreUI and necessary plugins-->

@@ -22,11 +22,19 @@ class BookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query_type' => 'required',
-            'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'message' => 'required',
+            // 'service_name' => 'required',
+            'area_or_postcode' => 'required|max:10',
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|digits:11|numeric',
+            'instruction' => 'max:2550',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'phone.digits' => 'Please enter a valid contact number',
         ];
     }
 }

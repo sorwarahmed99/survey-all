@@ -44,7 +44,7 @@
                         <textarea class="form-control" name="description" rows="5" id="service-textarea">{{ old('description') }}</textarea>
                     </div>
                 </div>
-                <div class="form-group mb-3">
+                {{-- <div class="form-group mb-3">
                     <h6>Publish or draft</h6>
                 </div>
 
@@ -55,7 +55,7 @@
                 <div class="form-check mb-3">
                     <input class="form-check-input" name="is_published" value="0" id="flexCheckChecked" type="checkbox" checked="">
                     <label class="form-check-label" for="flexCheckChecked">Draft</label>
-                </div>
+                </div> --}}
 
                 <div class="mb-3">
                     <input type="submit" class="btn btn-primary" name="submit" value="Submit">

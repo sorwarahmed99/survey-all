@@ -23,10 +23,17 @@ class ContactRequest extends FormRequest
     {
         return [
             'query_type' => 'required',
-            'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'message' => 'required',
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|digits:11|numeric',
+            'message' => 'required|max:2550',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'phone.digits' => 'Please enter a valid contact number',
         ];
     }
 }

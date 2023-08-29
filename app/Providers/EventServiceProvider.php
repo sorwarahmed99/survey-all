@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\BookingCreated;
+use App\Events\ContactCreated;
+use App\Listeners\BookingEmailSendToClient;
+use App\Listeners\ContactEmailSendToClient;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +21,14 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+
+        ContactCreated::class => [
+            ContactEmailSendToClient::class,
+        ],
+
+        BookingCreated::class => [
+            BookingEmailSendToClient::class,
         ],
     ];
 

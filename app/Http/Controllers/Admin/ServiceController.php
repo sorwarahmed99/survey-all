@@ -76,6 +76,7 @@ class ServiceController extends Controller
     {
         $service->title = $request->title;
     	$service->description = $request->description;
+        $service->slug = Str::slug($request->title, "-");
         
         if ($request->hasFile('image')) {
             $imagePath = public_path($service->image);
