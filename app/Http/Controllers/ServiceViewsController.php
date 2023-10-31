@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Contact;
+use App\Models\ServiceViews;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class ServiceViewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.contactandbookings.contacts', compact('contacts'));
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ServiceViews $serviceViews)
     {
         //
     }
@@ -44,7 +42,7 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(ServiceViews $serviceViews)
     {
         //
     }
@@ -52,7 +50,7 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, ServiceViews $serviceViews)
     {
         //
     }
@@ -60,9 +58,8 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contact $contact)
+    public function destroy(ServiceViews $serviceViews)
     {
-        $contact->delete();
-        return redirect()->back();
+        //
     }
 }

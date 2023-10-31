@@ -18,7 +18,7 @@
                 </h4>
                 <div class="row mt-3">
                     <div class="col-lg-8 d-flex flex-lg-column justify-content-center">
-                        <a href="/book-a-surveyor" class="btn btn-primary" >Book A RICS Surveyor</a>
+                        <a href="/book-a-surveyor" class="btn btn-primary" >Request a Survey Quote</a>
                     </div>
                 </div>
                 <div class="row gy-3 mt-1" data-aos="fade-up" data-aos-delay="400">

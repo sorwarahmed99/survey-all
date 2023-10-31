@@ -11,6 +11,8 @@ class Booking extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'house_or_flat',
+        'street',
         'area_or_postcode',
         'name',
         'slug',

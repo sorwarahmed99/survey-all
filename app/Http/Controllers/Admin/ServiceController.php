@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
+use App\Models\ServiceViews;
 use Illuminate\Http\Request;
 use File;
 use Illuminate\Support\Str;
@@ -59,6 +60,8 @@ class ServiceController extends Controller
     {
         return view('admin.services.show', compact('service'));
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.

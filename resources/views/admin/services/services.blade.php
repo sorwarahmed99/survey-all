@@ -22,6 +22,7 @@
                       </th>
                       <th scope="col">Title</th>
                       <th scope="col">Description</th>
+                      <th scope="col">Metadata</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -37,12 +38,16 @@
                             <img class="avatar-img" src="{{ asset($service->image) }}" alt="user-image">
                           </div>
                         </td>
+                        
                         <td>
                           <a href="{{ route('service', $service)}}">
-                          
-                            {{ $service->title }}</td>
+                            {{ $service->title }}
                           </a>
+                        </td>
                         <td>{!! Str::limit($service->description, 50,  '...') !!}</td>
+                        <td>
+                          <a href={{ route('admin.service.metadata', $service) }}>Views {{$service->views}}</a>
+                        </td>
                         <td>
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.services.edit', $service->id) }}">{{ __('Edit') }}</a>
                             <form style="display: inline-block"

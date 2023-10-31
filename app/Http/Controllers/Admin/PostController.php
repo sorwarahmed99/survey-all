@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddPostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\PostViews;
 use Illuminate\Http\Request;
 use File;
 use Str;
@@ -20,6 +21,8 @@ class PostController extends Controller
         $posts = Post::all();
         return view('admin.blogs.posts', compact('posts'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,6 +64,9 @@ class PostController extends Controller
         // }
         return view('admin.blogs.show', compact('post'));
     }
+
+
+    
 
     
     public function edit(Post $post)

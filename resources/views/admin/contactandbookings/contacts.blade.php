@@ -13,9 +13,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Query Type</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Phone</th>
+                  <th scope="col">Details</th>
                   <th scope="col">Message</th>
                   <th scope="col">Date</th>
                   <th scope="col">Action</th>
@@ -29,14 +27,29 @@
                     <tr>
                         <th scope="row">{{ $count }}</th>
                         <td>{{ $contact->query_type }}</td>
-                        <td>{{ $contact->name }}</td>
-                        <td>{{ $contact->email }}</td>
-                        <td>{{ $contact->phone }}</td>
-                        <td>{{ $contact->message }}</td>
-                        <td>{{ $contact->created_at->format('d-m-Y') }}</td>
                         <td>
-                            {{-- <a class="btn btn-sm btn-primary" href="{{ route('admin.contacts.edit', $contact->id) }}">{{ __('Edit') }}</a> --}}
-                            <form style="display: inline-block"
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              {{ $contact->name }}
+                            </li>
+                            <li class="list-group-item">
+                              {{ $contact->email }}
+                            </li>
+                            <li class="list-group-item">
+                              {{ $contact->phone }}
+                            </li>
+                          </ul>
+                          
+                        </td>
+                        <td>{!! Str::limit($contact->message, 50,  '...') !!}</td>
+
+                        <td>{{ $contact->created_at->format('d-m-Y') }}</td>
+
+                        <td>
+                          <button class="btn btn-sm btn-primary mr-2" data-coreui-toggle="modal" data-coreui-target="#exampleModal-{{ $contact->id }}">
+                            <i class="fa fa-external-link"></i>
+                          </button>
+                          <form style="display: inline-block"
                                   action="{{ route('admin.contact.destroy', $contact->id) }}"
                                   method="POST">
                                 @csrf
@@ -47,6 +60,51 @@
                             </form>
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="exampleModal-{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">
+                                  <b>{{ $contact->name }}</b>
+                              </h5>
+                              <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <ul class="list-group">
+                                  <li class="list-group-item">
+                                    Query type - <b>{{ $contact->query_type }}</b>
+                                  </li>
+                                  
+                              </ul>
+                              <ul class="list-group mt-2">
+                                  <li class="list-group-item">
+                                      <b>Contact details</b>
+                                      <p>
+                                          Name - {{ $contact->name }}
+                                          <br>
+                                          Email - {{ $contact->email }}
+                                          <br>
+                                          Phone - {{ $contact->phone }}
+                                          <br>
+                                      </p>
+                                  </li>
+                              </ul>
+                              <ul class="list-group mt-2">
+                                <li class="list-group-item">
+                                  <b>Message</b>
+                                  {{ $contact->message }}
+                                </li>
+
+                              </ul>
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     @php
                         $count++;
                     @endphp

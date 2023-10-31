@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JustSteveKing\LaravelPostcodes\Facades\Postcode;
+use JustSteveKing\LaravelPostcodes\Service\PostcodeService;
 
 class BookingRequest extends FormRequest
 {
@@ -23,7 +25,13 @@ class BookingRequest extends FormRequest
     {
         return [
             // 'service_name' => 'required',
-            'area_or_postcode' => 'required|max:10',
+            'house_or_flat' => 'required|max:255',
+            'street' => 'required|max:255',
+            'postcode' => 'required|max:10',
+            // 'postcode' => [
+            //     'required',
+            //     new Postcode(resolve(PostcodeService::class))
+            // ],
             'name' => 'required|max:255',
             'email' => 'required|email',
             'phone' => 'required|digits:11|numeric',
@@ -35,6 +43,8 @@ class BookingRequest extends FormRequest
     {
         return [
             'phone.digits' => 'Please enter a valid contact number',
+            'postcode.required' => 'Postcode is required',
+            // 'postcode.max' => 'Please enter a valid postcode',
         ];
     }
 }

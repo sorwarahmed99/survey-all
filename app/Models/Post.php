@@ -14,6 +14,8 @@ class Post extends Model
         'slug',
         'image',
         'description',
-        'is_published',
+        'views',
+        
+        // 'is_published',
     ];
 }

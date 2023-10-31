@@ -72,13 +72,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::put('/posts/update/{post:slug}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('posts.update');
         Route::delete('/posts/delete/{post:post}', [App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('posts.destroy');
 
-
+        Route::get('/metadata/post/{post:slug}', [App\Http\Controllers\Admin\MetadataController::class, 'postmetadata'])->name('post.metadata');
+        Route::get('/metadata/service/{service:slug}', [App\Http\Controllers\Admin\MetadataController::class, 'servicemetadata'])->name('service.metadata');
 
         Route::resource('teams', TeamController::class);
         Route::resource('testimonials', TestimonialController::class);
         Route::resource('services', ServiceController::class);
         Route::resource('categories', CategoryController::class);
-        // Route::resource('posts', PostController::class);
         Route::resource('coverage-areas', SurveyCoverageAreaController::class);
         Route::resource('stats', StatisticController::class);
 

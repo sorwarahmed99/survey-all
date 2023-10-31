@@ -26,7 +26,20 @@
                 
                 <tr>
                   <th scope="row">{{ $count }}</th>
-                  <td>{{ $booking->area_or_postcode }}</td>
+                  <td>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        {{ $booking->house_or_flat }}
+                      </li>
+                      <li class="list-group-item">
+                        {{ $booking->street }}
+                      </li>
+                      <li class="list-group-item">
+                        {{ $booking->area_or_postcode }}
+                      </li>
+                    </ul>
+                  
+                  </td>
                   <td>
                     <ul class="list-group">
                       <li class="list-group-item">
@@ -88,7 +101,6 @@
                     </td>
                   </tr>
 
-
                   <div class="modal fade" id="exampleModal-{{ $booking->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -140,7 +152,13 @@
                                         <br>
                                         Phone - {{ $booking->phone }}
                                         <br>
-                                        Area - {{$booking->area_or_postcode }}
+                                        <b>Address</b> 
+                                        <br>
+                                        House or flat - {{ $booking->house_or_flat }} 
+                                        <br>
+                                        Street - {{ $booking->street }}     
+                                        <br>
+                                        Postcode - {{$booking->area_or_postcode }}
                                     </p>
                                 </li>
                             </ul>

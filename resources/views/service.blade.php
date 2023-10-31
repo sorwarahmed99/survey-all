@@ -35,7 +35,7 @@
             <p>
               {!! $service->description !!}
             </p>
-            <a href="/book-a-surveyor" class="btn btn-primary float-end mt-2 px-5 py-3 fw-semibold" >Book A RICS Surveyor</a>
+            <a href="/book-a-surveyor" class="btn btn-primary float-end mt-2 px-5 py-3 fw-semibold" >Request a Survey Quote</a>
             
             {{-- <ul>
               <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>

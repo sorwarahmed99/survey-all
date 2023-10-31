@@ -22,6 +22,7 @@
                       </th>
                       <th scope="col">Title</th>
                       <th scope="col">Description</th>
+                      <th scope="col">Metadata</th>
                       <th scope="col">Created</th>
                       <th scope="col">Action</th>
                     </tr>
@@ -45,6 +46,9 @@
                         </a>
                       </td>
                         <td>{!! Str::limit($post->description, 50,  '...') !!}</td>
+                        <td>
+                          <a href={{ route('admin.post.metadata', $post) }}>Views {{$post->views}}</a>
+                        </td>
                         <td>{{ $post->created_at->format('d-m-Y') }}</td>
 
                         <td>

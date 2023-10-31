@@ -15,7 +15,9 @@
             <p><strong>Email:</strong> {{ $booking->email }}</p>
             <p><strong>Service:</strong> {{ $booking->job_type }}</p>
             <p><strong>Message:</strong> {{ $booking->instruction }}</p>
-            <p><strong>Name:</strong> {{ $booking->area_or_postcode }}</p>
+            <p><strong>House or Flat:</strong> {{ $booking->house_or_flat }}</p>
+            <p><strong>Street:</strong> {{ $booking->street }}</p>
+            <p><strong>Postcode:</strong> {{ $booking->area_or_postcode }}</p>
         </div>
 
         <div style="margin-top: 20px;">

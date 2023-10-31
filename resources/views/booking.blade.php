@@ -15,38 +15,72 @@
                     <div class="col-sm-12 col-md-12 col-lg-10 offset-lg-1 col-md-8 offset-md-2 shadow mb-5 bg-body rounded">
                         <form action="{{ route('bookingstore') }}" class="booking-form" method="POST">
                             @csrf
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger">
-                                    <li class="text-danger">{{ $error }}</li>
-                                </div>
-                            @endforeach
+                           
         
-                            @if(Session::has('success'))
-                                <div class="alert alert-success">
-                                    {{Session::get('success')}}
-                                </div>
-                            @endif
                             <h4 style="color: #0e1d34;">Book a RICS Surveyor</h4>
                             <div class="row">
                                 <div class="mt-3 form-group">
                                     {{-- <label for="area_or_postcode" class="form-label">Area or postcode</label> --}}
-                                    <input type="text" value="{{ old('area_or_postcode') }}" class="form-control {{ $errors->has('area_or_postcode') ? 'error' : '' }}" id="area_or_postcode" name="area_or_postcode" placeholder="Area name or postcode">
+                                    <input type="text" value="{{ old('house_or_flat') }}" class="form-control {{ $errors->has('house_or_flat') ? 'error' : '' }}" id="house_or_flat" name="house_or_flat" placeholder="House or flat number">
+                                    @if ($errors->has('house_or_flat'))
+                                        <div class="error">
+                                            {{ $errors->first('house_or_flat') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="mt-3 form-group">
+                                    {{-- <label for="area_or_postcode" class="form-label">Area or postcode</label> --}}
+                                    <input type="text" value="{{ old('street') }}" class="form-control {{ $errors->has('street') ? 'error' : '' }}" id="street" name="street" placeholder="Street ">
+                                    @if ($errors->has('street'))
+                                        <div class="error">
+                                            {{ $errors->first('street') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="mt-3 form-group">
+                                    {{-- <label for="area_or_postcode" class="form-label">Area or postcode</label> --}}
+                                    <input type="text" value="{{ old('postcode') }}" class="form-control {{ $errors->has('postcode') ? 'error' : '' }}" id="postcode" name="postcode" placeholder="Postcode">
+                                    @if ($errors->has('postcode'))
+                                        <div class="error">
+                                            {{ $errors->first('postcode') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group mt-3">
                                     {{-- <label for="name" class="form-label">Full Name</label> --}}
-                                    <input value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'error' : '' }}" placeholder="Full Name" name="name" type="text" id="task-name" required autofocus>
+                                    <input value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'error' : '' }}" placeholder="Full Name" name="name" type="text" id="task-name" autofocus>
+                                    @if ($errors->has('name'))
+                                        <div class="error">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group mt-3">
                                     {{-- <label for="email" class="form-label">Email</label> --}}
-                                    <input value="{{ old('email') }}" type="email" class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="email" id="email" placeholder="Email" required>
+                                    <input value="{{ old('email') }}" type="email" class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="email" id="email" placeholder="Email">
+                                    @if ($errors->has('email'))
+                                        <div class="error">
+                                            {{ $errors->first('email') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group mt-3">
                                     {{-- <label for="phone" class="form-label">Phone</label> --}}
                                     <input type="number" class="form-control {{ $errors->has('phone') ? 'error' : '' }}" value="{{ old('phone') }}" name="phone" id="phone" placeholder="Phone">
+                                    @if ($errors->has('phone'))
+                                        <div class="error">
+                                            {{ $errors->first('phone') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                           <div class="form-group mt-3">
                             <textarea class="form-control {{ $errors->has('instruction') ? 'error' : '' }}" value="{{ old('instruction') }}" name="instruction" rows="5" placeholder="Special instruction"></textarea>
+                            @if ($errors->has('instruction'))
+                                <div class="error">
+                                    {{ $errors->first('instruction') }}
+                                </div>
+                            @endif
                           </div>
                           
                           <div class="text-center mt-3"><button class="btn btn-primary" type="submit">Continue</button></div>
